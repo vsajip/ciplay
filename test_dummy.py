@@ -2,7 +2,7 @@
 import logging
 import unittest
 
-from dummy import hello
+from dummy import hello, gpg_version
 
 logger = logging.getLogger('test_dummy')
 
@@ -15,6 +15,12 @@ class BaseTestCase(unittest.TestCase):
 
     def test_hello(self):
         self.assertEqual(hello(), 'Hello, world!')
+
+    def test_gnupg(self):
+        v = gpg_version()
+        self.assertIsInstance(v, tuple)
+        logger.debug('GnuPG version: %s', v)
+        self.assertTrue(v >= (1,))
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG, filename='test_dummy.log',
