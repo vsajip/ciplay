@@ -30,7 +30,7 @@ jobs:
       #with:
         #args: 'install gnupg'
       run: |
-        'choco install gnupg'
+        'cmd /c choco install gnupg'
       if: ${{ matrix.os == 'windows-latest' }}
     - name: Test with unittest
       run: |
