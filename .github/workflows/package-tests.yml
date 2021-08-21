@@ -30,7 +30,10 @@ jobs:
       #with:
         #args: 'install gnupg'
       run: |
-        'cmd /c choco install gnupg'
+        $env:PATH = "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\bin"
+        [Environment]::SetEnvironmentVariable("Path", $env:PATH, "Machine")
+        choco install gnupg
+        echo "C:\Program Files (x86)\GnuPG\bin" >> $env:GITHUB_PATH
       if: ${{ matrix.os == 'windows-latest' }}
     - name: Test with unittest
       run: |
